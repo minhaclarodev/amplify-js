@@ -34,6 +34,8 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.amazonaws.amplify.pushnotification.modules.RNPushNotificationJsDelivery;
 import com.amazonaws.amplify.pushnotification.modules.RNPushNotificationBroadcastReceiver;
 
+import com.amazonaws.amplify.pushnotification.modules.RNPushNotificationInitial;
+
 public class RNPushNotificationModule extends ReactContextBaseJavaModule {
     private static final String LOG_TAG = "RNPushNotificationModule";
     private boolean receiverRegistered;
@@ -68,5 +70,12 @@ public class RNPushNotificationModule extends ReactContextBaseJavaModule {
         String token =  FirebaseInstanceId.getInstance().getToken();
         Log.i(LOG_TAG, "getting token" + token);
         callback.invoke(token);
+    }
+
+    @ReactMethod
+    public void getInitialNotification(Callback callback) {
+        String notification = RNPushNotificationInitial.instance().getNotificationData();
+        Log.i(LOG_TAG, "getInitialNotification " + notification);
+        callback.invoke(notification);
     }
 }

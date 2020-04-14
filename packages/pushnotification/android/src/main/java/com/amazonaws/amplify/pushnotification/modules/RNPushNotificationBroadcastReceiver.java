@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.util.Log;
+import android.os.Bundle;
 
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
@@ -68,7 +69,15 @@ public class RNPushNotificationBroadcastReceiver extends BroadcastReceiver {
         ReactInstanceManager mReactInstanceManager = ((ReactApplication) context.getApplicationContext()).getReactNativeHost().getReactInstanceManager();
         ReactContext reactContext = mReactInstanceManager.getCurrentReactContext();
         RNPushNotificationJsDelivery jsDelivery = new RNPushNotificationJsDelivery((ReactApplicationContext) reactContext);
-        jsDelivery.emitNotificationOpened(intent.getBundleExtra("notification"));
+
+
+        Bundle bundle = intent.getBundleExtra("notification");
+        String data = RNPushNotificationCommon.convertJSON(bundle);
+        if(data != null) {
+            RNPushNotificationInitial.instance().setNotificationData(data);
+        }
+
+        jsDelivery.emitNotificationOpened(bundle);
 
         openApp(context);
     }
