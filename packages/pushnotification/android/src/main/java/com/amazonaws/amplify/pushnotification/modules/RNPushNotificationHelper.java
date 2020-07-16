@@ -255,7 +255,14 @@ public class RNPushNotificationHelper {
                 bigText = msg;
             }
 
-            notification.setStyle(new NotificationCompat.BigTextStyle().bigText(bigText));
+            String imageUrl = bundle.getString("pinpoint.notification.imageUrl");
+            if (imageUrl != null) {
+                Bitmap bigPicture = new ImageHelper().execute(imageUrl).get();
+                notification.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bigPicture));
+            } else {
+                notification.setStyle(new NotificationCompat.BigTextStyle().bigText(bigText));
+            }
+
 
             Intent intent = new Intent(NOTIFICATION_OPENED);
             intent.putExtra("notification", bundle);
