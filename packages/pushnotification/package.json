@@ -1,6 +1,6 @@
 {
-  "name": "@aws-amplify/pushnotification",
-  "version": "3.0.7",
+  "name": "obj-amplify-pushnotification",
+  "version": "3.0.9",
   "description": "Push notifications category of aws-amplify",
   "main": "./lib/index.js",
   "module": "./lib/index.js",
@@ -18,13 +18,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/aws-amplify/amplify-js.git"
+    "url": "https://github.com/minhaclarodev/amplify-js"
   },
   "author": "Amazon Web Services",
   "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/aws/aws-amplify/issues"
-  },
   "homepage": "https://aws-amplify.github.io/",
   "devDependencies": {
     "@types/jest": "^20.0.8",
